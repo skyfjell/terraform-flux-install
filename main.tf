@@ -22,24 +22,19 @@ data "kubectl_file_documents" "this" {
   content = data.flux_install.this.content
 }
 
-locals {
-  documents = [for doc in data.kubectl_file_documents.this.documents :
+resource "kubectl_manifest" "flux-install" {
+  for_each = { for yaml in [for doc in data.kubectl_file_documents.this.documents :
     {
       data : yamldecode(doc)
       content : doc
-    }
-  ]
-}
-
-resource "kubectl_manifest" "flux-install" {
-  for_each = { for yaml in local.documents :
+    }] :
     lower(
       join(
         "/",
         compact([yaml.data.apiVersion, yaml.data.kind, lookup(yaml.data.metadata, "namespace", ""), yaml.data.metadata.name]),
       )
     )
-    => yaml.content
+    => yaml.doc
   }
 
   depends_on = [kubernetes_namespace.this]
