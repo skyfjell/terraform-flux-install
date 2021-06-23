@@ -4,6 +4,7 @@ locals {
   create_namespace = var.create_namespace
   path_prefix      = var.path_prefix
   toleration_keys  = var.toleration_keys
+  network_policy   = var.network_policy
 }
 
 locals {
