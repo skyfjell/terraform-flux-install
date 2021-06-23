@@ -34,3 +34,9 @@ variable "path_prefix" {
   default     = ""
   type        = string
 }
+
+variable "network_policy" {
+  description = "Install flux with network policy"
+  default     = false
+  type        = bool
+}
