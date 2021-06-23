@@ -14,6 +14,7 @@ resource "kubernetes_namespace" "this" {
 data "flux_install" "this" {
   target_path    = local.paths_string
   network_policy = local.network_policy
+  version        = local.version
 
   # TODO This should be required for the module.
   toleration_keys = local.toleration_keys
