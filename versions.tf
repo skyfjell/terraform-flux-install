@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 2.1.0"
     }
+    kubernetes-alpha = {
+      source  = "hashicorp/kubernetes-alpha"
+      version = ">= 0.5.0"
+    }
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = ">= 1.10.0"
