@@ -27,7 +27,7 @@ data "kubectl_file_documents" "this" {
 resource "kubernetes_manifest" "flux-install" {
   provider = kubernetes-alpha
 
-  for_each = data.kubectl_file_documents.this.documents
+  for_each = toset(data.kubectl_file_documents.this.documents)
 
   manifest = yamldecode(each.value)
 
