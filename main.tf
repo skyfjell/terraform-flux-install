@@ -29,7 +29,10 @@ resource "kubernetes_manifest" "flux-install" {
 
   for_each = toset(data.kubectl_file_documents.this.documents)
 
-  manifest = yamldecode(each.value)
+  manifest = {
+    for key, value in yamldecode(each.value) :
+    key => value if !contains(["status"], key)
+  }
 
   depends_on = [kubernetes_namespace.this]
 }
