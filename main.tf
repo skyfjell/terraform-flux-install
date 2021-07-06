@@ -24,26 +24,12 @@ data "kubectl_file_documents" "this" {
   content = data.flux_install.this.content
 }
 
-locals {
-  documents = [for doc in data.kubectl_file_documents.this.documents :
-    {
-      data : yamldecode(doc)
-      content : doc
-    }
-  ]
-}
+resource "kubernetes_manifest" "flux-install" {
+  provider = kubernetes-alpha
 
-resource "kubectl_manifest" "flux-install" {
-  for_each = { for yaml in local.documents :
-    lower(
-      join(
-        "/",
-        compact([yaml.data.apiVersion, yaml.data.kind, lookup(yaml.data.metadata, "namespace", ""), yaml.data.metadata.name]),
-      )
-    )
-    => yaml.content
-  }
+  for_each = data.kubectl_file_documents.this.documents
+
+  manifest = yamldecode(each.value)
 
   depends_on = [kubernetes_namespace.this]
-  yaml_body  = each.value
 }
