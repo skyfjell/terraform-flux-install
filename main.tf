@@ -26,9 +26,10 @@ data "kubectl_file_documents" "this" {
 
 locals {
   # Fix inconsistent result from cpu unit conversion on apply.
+  # Remove namespace doc...
   temp_documents_1 = [
     for doc in data.kubectl_file_documents.this.documents :
-    yamldecode(replace(doc, "cpu: 1000m", "cpu: 1"))
+    yamldecode(replace(doc, "cpu: 1000m", "cpu: 1")) if length(regexall("^kind: Namespace", doc)) == 0
   ]
 }
 
