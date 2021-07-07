@@ -35,7 +35,7 @@ locals {
 locals {
   # Remove out of spec "status" property in root of document.
   temp_documents_2 = [
-    for doc in temp_documents_1 :
+    for doc in local.temp_documents_1 :
     {
       for key, value in doc :
       key => value if !contains(["status"], key)
@@ -45,7 +45,7 @@ locals {
 
 locals {
   documents = {
-    for doc in temp_documents_2 :
+    for doc in local.temp_documents_2 :
     lower(
       join("/", compact([doc.apiVersion, doc.kind, lookup(doc.metadata, "namespace", ""), doc.metadata.name]))
     ) => doc
@@ -55,7 +55,7 @@ locals {
 resource "kubernetes_manifest" "flux-install" {
   provider = kubernetes-alpha
 
-  for_each = documents
+  for_each = local.documents
 
   manifest = each.value
 
