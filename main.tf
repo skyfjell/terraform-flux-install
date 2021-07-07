@@ -28,7 +28,7 @@ locals {
   # Fix inconsistent result from cpu unit conversion on apply.
   temp_documents_1 = [
     for doc in data.kubectl_file_documents.this.documents :
-    yamldecode(replace(doc, "cpu: \"1000m\"", "cpu:\"1\""))
+    yamldecode(replace(doc, "cpu: 1000m", "cpu: 1"))
   ]
 }
 
@@ -52,7 +52,7 @@ locals {
   }
 }
 
-resource "kubernetes_manifest" "flux-install" {
+resource "kubernetes_manifest" "this" {
   provider = kubernetes-alpha
 
   for_each = local.documents
