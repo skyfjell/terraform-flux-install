@@ -29,7 +29,7 @@ locals {
   # Remove namespace doc...
   temp_documents_1 = [
     for doc in data.kubectl_file_documents.this.documents :
-    yamldecode(replace(doc, "cpu: 1000m", "cpu: 1")) if length(regexall("^kind: Namespace", doc)) == 0
+    yamldecode(replace(doc, "cpu: 1000m", "cpu: 1")) if length(regexall("kind: Namespace", doc)) == 0
   ]
 }
 
