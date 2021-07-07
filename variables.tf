@@ -18,7 +18,7 @@ variable "create_namespace" {
 
 variable "toleration_keys" {
   description = "Toleration keys for the flux components"
-  default     = [""]
+  default     = []
   type        = list(string)
 }
 
