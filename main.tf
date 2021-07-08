@@ -61,10 +61,4 @@ resource "kubernetes_manifest" "this" {
   manifest = each.value
 
   depends_on = [kubernetes_namespace.this]
-
-  lifecycle {
-    ignore_changes = [
-      manifest[0].metadata[0].creationTimestamp,
-    ]
-  }
 }
