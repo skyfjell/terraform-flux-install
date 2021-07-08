@@ -64,7 +64,7 @@ resource "kubernetes_manifest" "this" {
 
   lifecycle {
     ignore_changes = [
-      object.0.metadata.0.creationTimestamp,
+      manifest["metadata"]["creationTimestamp"],
     ]
   }
 }
