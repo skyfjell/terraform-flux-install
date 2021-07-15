@@ -9,6 +9,10 @@ resource "kubernetes_namespace" "this" {
       metadata[0].labels,
     ]
   }
+
+  timeouts {
+    delete = "30m"
+  }
 }
 
 data "flux_install" "this" {
@@ -49,7 +53,9 @@ locals {
     for doc in local.temp_documents_2 :
     lower(
       join("/", compact([doc.apiVersion, doc.kind, lookup(doc.metadata, "namespace", ""), doc.metadata.name]))
-    ) => doc
+    ) =>
+    # Remove `creationTimestamp` from metadata to prevent state mismatch.
+    merge(doc, { metadata = { for k, v in doc.metadata : k => v if k != "creationTimestamp" } })
   }
 }
 
