@@ -60,8 +60,6 @@ locals {
 }
 
 resource "kubernetes_manifest" "this" {
-  provider = kubernetes-alpha
-
   for_each = local.documents
 
   manifest = each.value
