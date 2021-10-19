@@ -1,5 +1,3 @@
-# This module is now located at <https://registry.terraform.io/modules/OmniTeqSource/install/flux/latest>
-
 <!--- start terraform-docs --->
 
 ## Requirements
