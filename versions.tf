@@ -2,7 +2,7 @@ terraform {
   required_providers {
     flux = {
       source  = "fluxcd/flux"
-      version = ">= 0.1.6"
+      version = ">= 0.12.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
