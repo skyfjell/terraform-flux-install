@@ -43,6 +43,6 @@ variable "network_policy" {
 
 variable "flux_version" {
   description = "Flux version"
-  default     = "v0.15.2"
+  default     = "v0.28.2"
   type        = string
 }
