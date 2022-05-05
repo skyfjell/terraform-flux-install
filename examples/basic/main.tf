@@ -7,5 +7,18 @@ provider "kubernetes" {
 }
 
 module "flux-install-basic" {
-  source = "../../"
+  source              = "../../"
+  install_crds        = true
+  install_controllers = true
+
+  resources = {
+    source-controller = {
+      limits = {
+        memory = "4Gi"
+      },
+      requests = {
+        memory = "2Gi"
+      }
+    }
+  }
 }

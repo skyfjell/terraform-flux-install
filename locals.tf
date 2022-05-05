@@ -6,13 +6,17 @@ locals {
   toleration_keys  = var.toleration_keys
   network_policy   = var.network_policy
   version          = var.flux_version
-}
+  paths            = length(local.path_prefix) == 0 ? var.paths : formatlist("%s/%s", local.path_prefix, var.paths)
+  paths_string     = join("\\,", local.paths)
 
-locals {
-  # Add path prefix to all paths if exists.
-  paths = length(local.path_prefix) == 0 ? var.paths : formatlist("%s/%s", local.path_prefix, var.paths)
-}
+  install_crds        = var.install_crds
+  install_controllers = var.install_controllers
 
-locals {
-  paths_string = join("\\,", local.paths)
+  resources = {
+    for name, types in var.resources : name => {
+      for type, resources in types : type => {
+        for resource, value in resources : resource => value if value != null
+      }
+    }
+  }
 }

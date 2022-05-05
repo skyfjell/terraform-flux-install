@@ -43,6 +43,33 @@ variable "network_policy" {
 
 variable "flux_version" {
   description = "Flux version"
-  default     = "v0.28.2"
+  default     = "v0.30.2"
   type        = string
+}
+
+variable "install_crds" {
+  description = "Install CRDs?"
+  default     = true
+  type        = bool
+}
+
+variable "install_controllers" {
+  description = "Install Controllers?"
+  default     = true
+  type        = bool
+}
+
+variable "resources" {
+  description = "Deployment Pod Resources"
+  default     = {}
+  type = map(object({
+    limits = optional(object({
+      cpu    = optional(string)
+      memory = optional(string)
+    })),
+    requests = optional(object({
+      cpu    = optional(string)
+      memory = optional(string)
+    })),
+  }))
 }
