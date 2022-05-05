@@ -16,12 +16,12 @@ resource "kubernetes_namespace" "this" {
 }
 
 data "flux_install" "this" {
-  target_path    = local.paths_string
-  network_policy = local.network_policy
-  version        = local.version
-
-  # TODO This should be required for the module.
-  toleration_keys = local.toleration_keys
+  # Random path so we don't pick up any manifests inadvertantly
+  target_path     = "/1f53734d-5e8d-4561-b9f2-b409499d098a/08cb5802-f420-4366-b7ea-ed1a5aa5307e"
+  network_policy  = local.network_policy
+  version         = local.version
+  cluster_domain  = local.cluster_domain
+  toleration_keys = local.tolerations
 }
 
 data "kubectl_file_documents" "this" {
