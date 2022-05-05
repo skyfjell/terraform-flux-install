@@ -19,7 +19,7 @@ jobs:
         run: terraform fmt -check --recursive
 
       - name: Terraform Validate Examples
-        working-directory: examples/basic
+        working-directory: examples/complete
         run: |
           terraform init -backend=false
           terraform validate ./
