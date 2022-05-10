@@ -2,7 +2,7 @@ terraform {
   required_providers {
     flux = {
       source  = "fluxcd/flux"
-      version = ">= 0.12.0"
+      version = ">= 0.14.1"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -10,9 +10,11 @@ terraform {
     }
     kubectl = {
       source  = "gavinbunney/kubectl"
-      version = ">= 1.10.0"
+      version = ">= 1.14.0"
     }
   }
 
-  required_version = ">= 0.15"
+  required_version = ">= 1"
+
+  experiments = [module_variable_optional_attrs]
 }
