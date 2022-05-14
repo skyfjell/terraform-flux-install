@@ -51,7 +51,32 @@ locals {
       join("/", compact([doc.apiVersion, doc.kind, lookup(doc.metadata, "namespace", ""), doc.metadata.name]))
     ) =>
     # Remove `creationTimestamp` from metadata to prevent state mismatch.
-    merge(doc, { metadata = { for k, v in doc.metadata : k => v if k != "creationTimestamp" } })
+    merge(
+      doc,
+      merge(
+        {
+          metadata = merge(
+            {
+              labels = merge(
+                {
+                  "app.kubernetes.io/managed-by"    = "Terraform",
+                  "app.kubernetes.io/name"          = "flux",
+                  "app.kubernetes.io/part-of"       = "flux"
+                  "app.kubernetes.io/component"     = "",
+                  "app.kubernetes.io/instance"      = "flux-system",
+                  "app.kubernetes.io/version"       = local.version,
+                  "app.kubernetes.io/managed-by"    = "Terraform",
+                  "app.kubernetes.io/created-by"    = "terraform-flux-install/main.tf",
+                  "app.kubernetes.io/created-by-id" = local.labels.id,
+                },
+                doc.metadata.labels,
+              )
+            },
+            { for k, v in doc.metadata : k => v if k != "creationTimestamp" },
+          )
+        }
+      )
+    )
   }
 
   crd_keys = [for id, doc in local.documents : id if doc.kind == "CustomResourceDefinition"]
@@ -62,6 +87,8 @@ locals {
 
   deployment_keys = [for id, doc in local.documents : id if doc.kind == "Deployment"]
 
+  # Merge in resources. Assumes only one container per deployment.
+  # Merge in labels.
   deployments = {
     for name, doc in local.documents : name => merge(
       doc,
