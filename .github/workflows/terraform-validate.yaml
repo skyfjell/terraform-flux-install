@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.3.2
