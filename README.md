@@ -6,9 +6,11 @@ All issues should be reported in the [GitHub repository](https://github.com/Omni
 
 It is recommended to create `fluxcd` Custom Resource objects using the complementary Custom Resource modules, linked below.
 
+A typical workflow with these modules is to install `flux`, configure the initial `GitRepository` and `flux` `Kustomization` resources with the additional modules, then continue cluster configuration from that `Kustomization` repository. Though you may use these modules to manage your clusters `flux` configuration entirely from Terraform, or mix and match.
+
 ## But there's already a `flux` provider?
 
-This module resolves some consistency issues with out of spec properties in the flux manifests when appying via the `kubernetes` provider. It also performs the complete installation of the manifests.
+This module resolves some consistency issues with out of spec properties in the flux manifests when appying via the `kubernetes` provider. It also performs the complete installation of the manifests. We do use the `flux` provider to pull manifests.
 
 ## Features
 
