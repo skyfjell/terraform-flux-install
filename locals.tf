@@ -17,4 +17,6 @@ locals {
       }
     }
   }
+
+  labels = var.labels
 }

@@ -66,3 +66,15 @@ variable "resources" {
     })),
   }))
 }
+
+variable "labels" {
+  description = "ID string and tags"
+  type = object(
+    {
+      id   = optional(string)
+      tags = optional(object({}))
+    }
+  )
+
+  default = {}
+}
