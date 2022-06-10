@@ -1,5 +1,9 @@
 # Terraform Flux Install Module
 
+## This Module Has Moved To:
+
+<https://registry.terraform.io/modules/etesiai/install/flux/latest>
+
 This Terraform Module makes use of the `flux`, `kubernetes`, and `kubectl` providers to install `fluxcd` to a Kubernetes cluster, while exposing further configuration. Manifests are sourced from the official `flux` provider, so updating is typically as simple as bumping the `flux_version` input on this module.
 
 All issues should be reported in the [GitHub repository](https://github.com/OmniTeqSource/terraform-flux-install/issues)
