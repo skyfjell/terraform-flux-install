@@ -105,7 +105,7 @@ locals {
                     nodeSelector = merge(
                       doc.spec.template.spec.nodeSelector,
                       local.node_selectors
-                      ),
+                    ),
                     containers = [
                       merge(
                         doc.spec.template.spec.containers[0],
