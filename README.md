@@ -86,6 +86,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Name of the cluster | `string` | `"default"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace to install in, and create(if enabled) | `string` | `"flux-system"` | no |
 | <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | Install flux with network policy | `bool` | `true` | no |
+| <a name="input_node_selectors"></a> [node\_selectors](#input\_node\_selectors) | Node Selectors for the flux components | <pre>object(<br>    {<br>      spec = optional(string)<br>    }<br>  )</pre> | `{}` | no |
 | <a name="input_resources"></a> [resources](#input\_resources) | Deployment Pod Resources | <pre>map(object({<br>    limits = optional(object({<br>      cpu    = optional(string)<br>      memory = optional(string)<br>    })),<br>    requests = optional(object({<br>      cpu    = optional(string)<br>      memory = optional(string)<br>    })),<br>  }))</pre> | `{}` | no |
 | <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | Toleration keys for the flux components | `list(string)` | `[]` | no |
 
