@@ -4,6 +4,7 @@ locals {
   create_namespace = var.create_namespace
   cluster_domain   = var.cluster_domain
   tolerations      = var.tolerations
+  node_selectors   = var.node_selectors
   network_policy   = var.network_policy
   version          = var.flux_version
 
