@@ -2,7 +2,7 @@
 
 This Terraform Module makes use of the `flux`, `kubernetes`, and `kubectl` providers to install `fluxcd` to a Kubernetes cluster, while exposing further configuration. Manifests are sourced from the official `flux` provider, so updating is typically as simple as bumping the `flux_version` input on this module.
 
-All issues should be reported in the [GitHub repository](https://github.com/Skyfjall/terraform-flux-install/issues)
+All issues should be reported in the [GitHub repository](https://github.com/skyfjell/terraform-flux-install/issues)
 
 It is recommended to create `fluxcd` Custom Resource objects using the complementary Custom Resource modules, linked below.
 
@@ -29,13 +29,13 @@ For usage, see the examples:
 
 The below modules provide support for individual configuration of `fluxcd` Custom Resources:
 
-[Flux GitRepository Module](https://registry.terraform.io/modules/Skyfjall/git-repository/flux/latest)
+[Flux GitRepository Module](https://registry.terraform.io/modules/skyfjell/git-repository/flux/latest)
 
-[Flux Kustomization Module](https://registry.terraform.io/modules/Skyfjall/kustomization/flux/latest)
+[Flux Kustomization Module](https://registry.terraform.io/modules/skyfjell/kustomization/flux/latest)
 
-[Flux HelmRepository Module](https://registry.terraform.io/modules/Skyfjall/helm-repository/flux/latest)
+[Flux HelmRepository Module](https://registry.terraform.io/modules/skyfjell/helm-repository/flux/latest)
 
-[Flux HelmRelease Module](https://registry.terraform.io/modules/Skyfjall/helm-release/flux/latest)
+[Flux HelmRelease Module](https://registry.terraform.io/modules/skyfjell/helm-release/flux/latest)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
