@@ -28,6 +28,17 @@ variable "tolerations" {
   type        = list(string)
 }
 
+variable "node_selectors" {
+  description = "Node Selectors for the flux components"
+  type = object(
+    {
+      spec = optional(string)
+    }
+  )
+
+  default = {}
+}
+
 variable "network_policy" {
   description = "Install flux with network policy"
   default     = true
