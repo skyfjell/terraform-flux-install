@@ -43,17 +43,15 @@ The below modules provide support for individual configuration of `fluxcd` Custo
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1 |
-| <a name="requirement_flux"></a> [flux](#requirement\_flux) | >= 0.14.1 |
-| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | >= 1.14.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.2.0, < 3.0.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.4.1, < 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_flux"></a> [flux](#provider\_flux) | 0.14.1 |
-| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | 1.14.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.11.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.12.0 |
 
 ## Modules
 
@@ -63,11 +61,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kubernetes_manifest.controllers](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
-| [kubernetes_manifest.crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
+| [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_namespace.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
-| [flux_install.this](https://registry.terraform.io/providers/fluxcd/flux/latest/docs/data-sources/install) | data source |
-| [kubectl_file_documents.this](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/data-sources/file_documents) | data source |
 
 ## Inputs
 
@@ -82,9 +77,10 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Name of the cluster | `string` | `"default"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace to install in, and create(if enabled) | `string` | `"flux-system"` | no |
 | <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | Install flux with network policy | `bool` | `true` | no |
+| <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | Node Selector for Components | `map(string)` | `{}` | no |
 | <a name="input_node_selectors"></a> [node\_selectors](#input\_node\_selectors) | Node Selectors for the flux components | <pre>object(<br>    {<br>      spec = optional(string)<br>    }<br>  )</pre> | `{}` | no |
-| <a name="input_resources"></a> [resources](#input\_resources) | Deployment Pod Resources | <pre>map(object({<br>    limits = optional(object({<br>      cpu    = optional(string)<br>      memory = optional(string)<br>    })),<br>    requests = optional(object({<br>      cpu    = optional(string)<br>      memory = optional(string)<br>    })),<br>  }))</pre> | `{}` | no |
-| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | Toleration keys for the flux components | `list(string)` | `[]` | no |
+| <a name="input_specs"></a> [specs](#input\_specs) | Deployment Pod Specs | <pre>map(object({<br>    resources = object({<br>      limits   = optional(map(string)),<br>      requests = optional(map(string)),<br>    }),<br>    nodeSelector = optional(map(string))<br>  }))</pre> | `{}` | no |
+| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | Toleration keys for the flux components | `list(map(string))` | `[]` | no |
 
 ## Outputs
 
