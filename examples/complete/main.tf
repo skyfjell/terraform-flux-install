@@ -3,6 +3,13 @@ provider "kubernetes" {
   config_context = "k3d-tftest"
 }
 
+provider "helm" {
+  kubernetes {
+    config_path    = "~/.kube/config"
+    config_context = "k3d-tftest"
+  }
+}
+
 module "flux-install-complete" {
   source = "../../"
 
@@ -18,15 +25,27 @@ module "flux-install-complete" {
   flux_version        = "v0.30.2"
   cluster_domain      = "cluster.local"
 
-  tolerations = ["delivery"]
+  tolerations = [
+    {
+      key      = "delivery"
+      operator = "Exists"
+      effect   = "NoSchedule"
+    }
+  ]
 
-  resources = {
+  node_selector = {
+    "kubernetes.io/os" = "linux"
+  }
+
+  specs = {
     source-controller = {
-      limits = {
-        memory = "2Gi"
-      },
-      requests = {
-        memory = "1Gi"
+      resources = {
+        limits = {
+          memory = "2Gi"
+        },
+        requests = {
+          memory = "1Gi"
+        }
       }
     }
   }

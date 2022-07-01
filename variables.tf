@@ -25,7 +25,13 @@ variable "cluster_domain" {
 variable "tolerations" {
   description = "Toleration keys for the flux components"
   default     = []
-  type        = list(string)
+  type        = list(map(string))
+}
+
+variable "node_selector" {
+  description = "Node Selector for Components"
+  default     = {}
+  type        = map(string)
 }
 
 variable "node_selectors" {
@@ -63,18 +69,15 @@ variable "install_controllers" {
   type        = bool
 }
 
-variable "resources" {
-  description = "Deployment Pod Resources"
+variable "specs" {
+  description = "Deployment Pod Specs"
   default     = {}
   type = map(object({
-    limits = optional(object({
-      cpu    = optional(string)
-      memory = optional(string)
-    })),
-    requests = optional(object({
-      cpu    = optional(string)
-      memory = optional(string)
-    })),
+    resources = object({
+      limits   = optional(map(string)),
+      requests = optional(map(string)),
+    }),
+    nodeSelector = optional(map(string))
   }))
 }
 
