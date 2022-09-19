@@ -39,6 +39,7 @@ resource "helm_release" "this" {
   name       = local.name
   repository = "https://fluxcd-community.github.io/helm-charts"
   chart      = "flux2"
+  version    = local.chart_version
   values     = [yamlencode(local.main-tf.values)]
   namespace  = local.namespace
 

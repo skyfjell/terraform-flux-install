@@ -21,9 +21,7 @@ module "flux-install-complete" {
   install_crds        = true
   install_controllers = true
   namespace           = "flux-system"
-  network_policy      = true
-  flux_version        = "v0.30.2"
-  cluster_domain      = "cluster.local"
+  chart_version       = "1.3.0"
 
   tolerations = [
     {
