@@ -1,11 +1,11 @@
 variable "name" {
-  description = "Name of the cluster"
+  description = "Cluster Name"
   default     = "default"
   type        = string
 }
 
 variable "namespace" {
-  description = "Namespace to install in, and create(if enabled)"
+  description = "Namespace to Install/Create"
   default     = "flux-system"
   type        = string
 }
@@ -16,14 +16,8 @@ variable "create_namespace" {
   type        = bool
 }
 
-variable "cluster_domain" {
-  description = "Cluster Domain"
-  default     = "cluster.local"
-  type        = string
-}
-
 variable "tolerations" {
-  description = "Toleration keys for the flux components"
+  description = "Toleration Keys for Components"
   default     = []
   type        = list(map(string))
 }
@@ -34,26 +28,9 @@ variable "node_selector" {
   type        = map(string)
 }
 
-variable "node_selectors" {
-  description = "Node Selectors for the flux components"
-  type = object(
-    {
-      spec = optional(string)
-    }
-  )
-
-  default = {}
-}
-
-variable "network_policy" {
-  description = "Install flux with network policy"
-  default     = true
-  type        = bool
-}
-
-variable "flux_version" {
-  description = "Flux version"
-  default     = "v0.30.2"
+variable "chart_version" {
+  description = "Flux Chart Version"
+  default     = "1.3.0"
   type        = string
 }
 
