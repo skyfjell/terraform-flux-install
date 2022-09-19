@@ -51,7 +51,7 @@ The below modules provide support for individual configuration of `fluxcd` Custo
 | Name | Version |
 |------|---------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.6.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.12.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.13.1 |
 
 ## Modules
 
@@ -68,19 +68,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cluster_domain"></a> [cluster\_domain](#input\_cluster\_domain) | Cluster Domain | `string` | `"cluster.local"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Flux Chart Version | `string` | `"1.3.0"` | no |
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create Namespace? | `bool` | `true` | no |
-| <a name="input_flux_version"></a> [flux\_version](#input\_flux\_version) | Flux version | `string` | `"v0.30.2"` | no |
 | <a name="input_install_controllers"></a> [install\_controllers](#input\_install\_controllers) | Install Controllers? | `bool` | `true` | no |
 | <a name="input_install_crds"></a> [install\_crds](#input\_install\_crds) | Install CRDs? | `bool` | `true` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | ID string and tags | <pre>object(<br>    {<br>      id   = optional(string)<br>      tags = optional(object({}))<br>    }<br>  )</pre> | `{}` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name of the cluster | `string` | `"default"` | no |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace to install in, and create(if enabled) | `string` | `"flux-system"` | no |
-| <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | Install flux with network policy | `bool` | `true` | no |
+| <a name="input_name"></a> [name](#input\_name) | Cluster Name | `string` | `"default"` | no |
+| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace to Install/Create | `string` | `"flux-system"` | no |
 | <a name="input_node_selector"></a> [node\_selector](#input\_node\_selector) | Node Selector for Components | `map(string)` | `{}` | no |
-| <a name="input_node_selectors"></a> [node\_selectors](#input\_node\_selectors) | Node Selectors for the flux components | <pre>object(<br>    {<br>      spec = optional(string)<br>    }<br>  )</pre> | `{}` | no |
 | <a name="input_specs"></a> [specs](#input\_specs) | Deployment Pod Specs | <pre>map(object({<br>    resources = object({<br>      limits   = optional(map(string)),<br>      requests = optional(map(string)),<br>    }),<br>    nodeSelector = optional(map(string))<br>  }))</pre> | `{}` | no |
-| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | Toleration keys for the flux components | `list(map(string))` | `[]` | no |
+| <a name="input_tolerations"></a> [tolerations](#input\_tolerations) | Toleration Keys for Components | `list(map(string))` | `[]` | no |
 
 ## Outputs
 
