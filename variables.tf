@@ -30,7 +30,7 @@ variable "node_selector" {
 
 variable "chart_version" {
   description = "Flux Chart Version"
-  default     = "1.3.0"
+  default     = "2.3.0"
   type        = string
 }
 
