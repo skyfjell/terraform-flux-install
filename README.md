@@ -68,7 +68,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Flux Chart Version | `string` | `"1.3.0"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Flux Chart Version | `string` | `"2.3.0"` | no |
 | <a name="input_create_namespace"></a> [create\_namespace](#input\_create\_namespace) | Create Namespace? | `bool` | `true` | no |
 | <a name="input_install_controllers"></a> [install\_controllers](#input\_install\_controllers) | Install Controllers? | `bool` | `true` | no |
 | <a name="input_install_crds"></a> [install\_crds](#input\_install\_crds) | Install CRDs? | `bool` | `true` | no |
