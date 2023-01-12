@@ -12,13 +12,13 @@ locals {
   specs = merge(
     var.specs,
     {
-      "cli"                         = {},
-      "helm-controller"             = {},
-      "image-automation-controller" = {},
-      "image-reflector-controller"  = {},
-      "kustomize-controller"        = {},
-      "notification-controller"     = {},
-      "source-controller"           = {},
+      "cli"                       = {},
+      "helmController"            = {},
+      "imageAutomationController" = {},
+      "imageReflectorController"  = {},
+      "kustomizeController"       = {},
+      "notificationController"    = {},
+      "sourceController"          = {},
     }
   )
 

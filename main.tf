@@ -19,7 +19,7 @@ locals {
   main-tf = {
     values = merge(
       {
-        for name, spec in local.specs : replace(name, "-", "") => merge(
+        for name, spec in local.specs : name => merge(
           spec,
           {
             tolerations  = local.tolerations,
